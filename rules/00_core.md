@@ -17,7 +17,7 @@
   - only the skill(s) relevant to the task
   - only the specific docs/code sections needed next
 - Do not bulk-load `docs/`, logs, generated artifacts, or unrelated history.
-- Every task must leave behind a Context Manifest under `docs/plans/`.
+- Every task that modifies business code must leave behind a Context Manifest (minimal concise documentation) under docs/plans/
 
 ## Working Memory Discipline
 - Use `today.md` as the scratchpad for temporary goals, hypotheses, commands, and raw findings.
