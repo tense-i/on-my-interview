@@ -1,3 +1,4 @@
 .env
 today.md
 test.csv
+server/cmd/server/main
