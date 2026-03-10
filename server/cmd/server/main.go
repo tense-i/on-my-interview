@@ -11,10 +11,13 @@ import (
 	"on-my-interview/server/internal/config"
 )
 
+const version = "v0.0.1"
+
 func main() {
 	cfg := config.LoadFromEnv()
+	log.Printf("starting server version=%s", version)
 
-	application, err := app.New(cfg)
+	application, err := app.New(cfg, version)
 	if err != nil {
 		log.Fatalf("build app: %v", err)
 	}

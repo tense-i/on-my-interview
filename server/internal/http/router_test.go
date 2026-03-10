@@ -13,7 +13,7 @@ func TestRouterHealth(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/health", nil)
 	rec := httptest.NewRecorder()
 
-	NewRouter().ServeHTTP(rec, req)
+	NewRouter(Dependencies{Version: "v0.0.1"}).ServeHTTP(rec, req)
 
 	if rec.Code != http.StatusOK {
 		t.Fatalf("expected status %d, got %d", http.StatusOK, rec.Code)
@@ -26,5 +26,8 @@ func TestRouterHealth(t *testing.T) {
 
 	if payload["status"] != "ok" {
 		t.Fatalf("expected status ok, got %q", payload["status"])
+	}
+	if payload["version"] != "v0.0.1" {
+		t.Fatalf("expected version v0.0.1, got %q", payload["version"])
 	}
 }

@@ -25,7 +25,7 @@ type App struct {
 	scheduler  *jobs.Scheduler
 }
 
-func New(cfg config.Config) (*App, error) {
+func New(cfg config.Config, version string) (*App, error) {
 	if cfg.MySQLDSN == "" {
 		return nil, fmt.Errorf("INTERVIEW_CRAWLER_MYSQL_DSN is required")
 	}
@@ -58,6 +58,7 @@ func New(cfg config.Config) (*App, error) {
 		Handler: httpapi.NewRouter(httpapi.Dependencies{
 			JobService:   jobService,
 			QueryService: repo,
+			Version:      version,
 		}),
 	}
 

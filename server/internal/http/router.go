@@ -11,11 +11,16 @@ import (
 type Dependencies struct {
 	JobService   handlers.JobService
 	QueryService handlers.QueryService
+	Version      string
 }
 
 func NewRouter(deps ...Dependencies) http.Handler {
 	router := chi.NewRouter()
-	router.Get("/health", handlers.Health)
+	version := ""
+	if len(deps) > 0 {
+		version = deps[0].Version
+	}
+	router.Get("/health", handlers.Health(version))
 	var apiDeps handlers.Dependencies
 	if len(deps) > 0 {
 		apiDeps = handlers.Dependencies{
